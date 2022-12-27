@@ -1,0 +1,21 @@
+services:
+
+  Shared.domain.EventBus:
+    class: ../../../../Context/Shared/infrastructure/EventBus/InMemory/InMemoryAsyncEventBus
+    arguments: []
+
+  Shared.domain.QueryBus:
+    class: ../../../../Context/Shared/infrastructure/QueryBus/InMemoryQueryBus
+    arguments: ['@Shared.domain.QueryHandlers']
+
+  Shared.domain.QueryHandlers:
+    class: ../../../../Context/Shared/infrastructure/QueryBus/QueryHandlers
+    arguments: ['!tagged queryHandler']
+
+  Shared.domain.CommandHandlers:
+    class: ../../../../Context/Shared/infrastructure/CommandBus/CommandHandlers
+    arguments: ['!tagged commandHandler']
+
+  Shared.domain.CommandBus:
+    class: ../../../../Context/Shared/infrastructure/CommandBus/InMemoryCommandBus
+    arguments: ['@Shared.domain.CommandHandlers']
