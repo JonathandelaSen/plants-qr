@@ -1,7 +1,7 @@
 import { DomainEventSubscriber } from "../../../domain/DomainEventSubscriber"
 import { DomainEvent } from "../../../domain/DomainEvent"
 
-export class RabbitMQqueueFormatter {
+export class RabbitMQQueueFormatter {
     constructor(private moduleName: string) {}
 
     format(subscriber: DomainEventSubscriber<DomainEvent>) {

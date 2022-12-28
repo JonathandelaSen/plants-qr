@@ -1,11 +1,11 @@
-import { RabbitMqConnection } from "./RabbitMqConnection"
+import { RabbitMQConnection } from "./RabbitMQConnection"
 import { RabbitMQExchangeNameFormatter } from "./RabbitMQExchangeNameFormatter"
-import { RabbitMQqueueFormatter } from "./RabbitMQqueueFormatter"
+import { RabbitMQQueueFormatter } from "./RabbitMQQueueFormatter"
 import { DomainEventSubscriber } from "../../../domain/DomainEventSubscriber"
 import { DomainEvent } from "../../../domain/DomainEvent"
 
 export class RabbitMQConfigurer {
-    constructor(private connection: RabbitMqConnection, private queueNameFormatter: RabbitMQqueueFormatter, private messageRetryTtl: number) {}
+    constructor(private connection: RabbitMQConnection, private queueNameFormatter: RabbitMQQueueFormatter, private messageRetryTtl: number) {}
 
     async configure(params: { exchange: string; subscribers: Array<DomainEventSubscriber<DomainEvent>> }): Promise<void> {
         const retryExchange = RabbitMQExchangeNameFormatter.retry(params.exchange)

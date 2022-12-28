@@ -1,32 +1,31 @@
 import { DomainEventDeserializer } from "../DomainEventDeserializer"
 import { DomainEventJsonSerializer } from "../DomainEventJsonSerializer"
 import { DomainEventSubscribers } from "../DomainEventSubscribers"
-import { RabbitMqConnection } from "./RabbitMqConnection"
+import { RabbitMQConnection } from "./RabbitMqConnection"
 import { RabbitMQConsumerFactory } from "./RabbitMQConsumerFactory"
-import { RabbitMQqueueFormatter } from "./RabbitMQqueueFormatter"
+import { RabbitMQQueueFormatter } from "./RabbitMQQueueFormatter"
 import { EventBus } from "../../../domain/EventBus"
 import { DomainEvent } from "../../../domain/DomainEvent"
 
 export class RabbitMQEventBus implements EventBus {
     //private failoverPublisher: DomainEventFailoverPublisher
-    private connection: RabbitMqConnection
+    private connection: RabbitMQConnection
     private exchange: string
-    private queueNameFormatter: RabbitMQqueueFormatter
+    private queueNameFormatter: RabbitMQQueueFormatter
     private maxRetries: Number
 
-    constructor(params: {
+    constructor(
         //failoverPublisher: DomainEventFailoverPublisher;
-        connection: RabbitMqConnection
-        exchange: string
-        queueNameFormatter: RabbitMQqueueFormatter
+        connection: RabbitMQConnection,
+        exchange: string,
+        queueNameFormatter: RabbitMQQueueFormatter,
         maxRetries: Number
-    }) {
+    ) {
         //const { failoverPublisher, connection, exchange } = params;
-        const { connection, exchange } = params
         this.connection = connection
         this.exchange = exchange
-        this.queueNameFormatter = params.queueNameFormatter
-        this.maxRetries = params.maxRetries
+        this.queueNameFormatter = queueNameFormatter
+        this.maxRetries = maxRetries
     }
 
     async addSubscribers(subscribers: DomainEventSubscribers): Promise<void> {
@@ -42,7 +41,9 @@ export class RabbitMQEventBus implements EventBus {
     }
 
     async publish(events: Array<DomainEvent>): Promise<void> {
+        console.log("RabbitMQEventBus publish")
         for (const event of events) {
+            console.log("RabbitMQEventBus publish", event.eventName, event.eventId)
             try {
                 const routingKey = event.eventName
                 const content = this.toBuffer(event)
@@ -50,6 +51,7 @@ export class RabbitMQEventBus implements EventBus {
 
                 await this.connection.publish({ exchange: this.exchange, routingKey, content, options })
             } catch (error: any) {
+                console.log("RabbitMQEventBus publish error", error)
                 //await this.failoverPublisher.publish(event)
             }
         }

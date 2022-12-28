@@ -1,11 +1,15 @@
 services:
+  Plants.PlantRepository:
+    class: ../../../../Context/Plants/infrastructure/PlantsMongoRepository
+    arguments: [ '@Shared.domain.MongoRepository' ]
+
   Plants.PlantCreator:
     class: ../../../../Context/Plants/application/PlantCreator
-    arguments: ['@Shared.domain.EventBus']
+    arguments: ['@Shared.domain.EventBus', '@Plants.PlantRepository']
 
   Plants.PlantsByCriteriaSearcher:
     class: ../../../../Context/Plants/application/SearchByCriteria/PlantsByCriteriaSearcher
-    arguments: []
+    arguments: ['@Plants.PlantRepository']
 
 
   Plants.SearchPlantsByCriteriaQueryHandler:

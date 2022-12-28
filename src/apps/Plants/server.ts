@@ -1,3 +1,5 @@
+import dotenv from "dotenv"
+dotenv.config()
 import bodyParser from "body-parser"
 import compress from "compression"
 import errorHandler from "errorhandler"
@@ -7,9 +9,10 @@ import helmet from "helmet"
 import httpStatus from "http-status"
 import * as http from "http"
 //import Logger from '../../../Contexts/Shared/domain/Logger';
-import container from "./dependency-injection"
 import { registerRoutes } from "./routes"
 import cors from "cors"
+import container from "./dependency-injection"
+import WinstonLogger from "../../Context/Shared/infrastructure/Logger/WinstonLogger"
 
 export class Server {
     private express: express.Express
@@ -19,7 +22,6 @@ export class Server {
 
     constructor(port: string) {
         this.port = port
-        //this.logger = container.get('Shared.Logger');
         this.express = express()
         this.express.use(bodyParser.json())
         this.express.use(bodyParser.urlencoded({ extended: true }))
@@ -47,7 +49,7 @@ export class Server {
                     `  Backoffice Backend App is running at http://localhost:${this.port} in ${this.express.get('env')} mode`
                 );
                 this.logger.info('  Press CTRL-C to stop\n');*/
-                console.log(`  Backoffice Backend App is running at http://localhost:${this.port} in ${this.express.get("env")} mode`)
+                WinstonLogger.info(`  Backoffice Backend App is running at http://localhost:${this.port} in ${this.express.get("env")} mode`)
                 resolve()
             })
         })
