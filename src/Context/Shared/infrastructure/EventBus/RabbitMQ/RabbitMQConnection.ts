@@ -13,8 +13,10 @@ export class RabbitMQConnection {
     }
 
     async connect() {
+        console.log("Connecting...")
         this.connection = await this.amqpConnect()
         this.channel = await this.amqpChannel()
+        console.log("Connected...")
     }
 
     async exchange(params: { name: string }) {

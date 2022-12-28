@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev:plants": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules  ./src/apps/Plants/start.ts"
+    "dev:plants": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules  ./src/apps/Plants/start.ts",
+    "command:rabbitmq": "NODE_ENV=dev ts-node src/apps/Plants/command/runConfigureRabbitMQCommand"
   },
   "dependencies": {
     "@types/node": "^18.11.14",
