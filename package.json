@@ -4,7 +4,11 @@
   "private": true,
   "scripts": {
     "dev:plants": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules  ./src/apps/Plants/start.ts",
-    "command:rabbitmq": "NODE_ENV=dev ts-node src/apps/Plants/command/runConfigureRabbitMQCommand"
+    "command:rabbitmq": "NODE_ENV=dev ts-node src/apps/Plants/command/runConfigureRabbitMQCommand",
+    "test": "npm run test:unit && npm run test:features",
+    "test:unit": "NODE_ENV=test jest",
+    "test:features": "npm run test:mooc:backend:features",
+    "test:plants:features": "NODE_ENV=test cucumber-js -p mooc_backend"
   },
   "dependencies": {
     "@types/node": "^18.11.14",
@@ -36,7 +40,11 @@
     "@types/compression": "^1.7.2",
     "@types/errorhandler": "^1.5.0",
     "@types/cors": "^2.8.13",
+    "@types/jest": "^29.2.4",
     "ts-node-dev": "^2.0.0",
-    "@types/morgan": "^1.9.3"
+    "@types/morgan": "^1.9.3",
+    "jest": "^29.3.1",
+    "ts-jest": "^29.0.3",
+    "@faker-js/faker": "^7.6.0"
   }
 }
