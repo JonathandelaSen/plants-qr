@@ -9,6 +9,6 @@
 - [ ] Docker
 - [ ] Monitoring
 - [ ] Test
-  - [ ] lorem
+  - [x] Aceptance
   - [ ] ipsum
 
