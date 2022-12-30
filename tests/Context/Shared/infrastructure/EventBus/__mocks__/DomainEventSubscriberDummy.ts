@@ -1,6 +1,6 @@
-import { DomainEventSubscriber } from "../../../../../src/Context/Shared/domain/DomainEventSubscriber"
+import { DomainEventSubscriber } from "../../../../../../src/Context/Shared/domain/DomainEventSubscriber"
 import { DomainEventDummy } from "./DomainEventDummy"
-import { DomainEvent, DomainEventClass } from "../../../../../src/Context/Shared/domain/DomainEvent"
+import { DomainEvent, DomainEventClass } from "../../../../../../src/Context/Shared/domain/DomainEvent"
 
 export class DomainEventSubscriberDummy implements DomainEventSubscriber<DomainEventDummy> {
     private events: Array<DomainEvent>

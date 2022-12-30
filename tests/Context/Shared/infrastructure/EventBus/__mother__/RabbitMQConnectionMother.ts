@@ -1,4 +1,4 @@
-import { RabbitMQConnection } from "../../../../../src/Context/Shared/infrastructure/EventBus/RabbitMQ/RabbitMQConnection"
+import { RabbitMQConnection } from "../../../../../../src/Context/Shared/infrastructure/EventBus/RabbitMQ/RabbitMQConnection"
 import { RabbitMQConnectionConfigurationMother } from "./RabbitMQConnectionConfigurationMother"
 
 export class RabbitMQConnectionMother {

@@ -1,10 +1,10 @@
-import { RabbitMQConfigurer } from "../../../../src/Context/Shared/infrastructure/EventBus/RabbitMQ/RabbitMQConfigurer"
-import { RabbitMQConnection } from "../../../../src/Context/Shared/infrastructure/EventBus/RabbitMQ/RabbitMQConnection"
+import { RabbitMQConfigurer } from "../../../../../src/Context/Shared/infrastructure/EventBus/RabbitMQ/RabbitMQConfigurer"
+import { RabbitMQConnection } from "../../../../../src/Context/Shared/infrastructure/EventBus/RabbitMQ/RabbitMQConnection"
 import { RabbitMQConnectionMother } from "./__mother__/RabbitMQConnectionMother"
-import { RabbitMQQueueFormatter } from "../../../../src/Context/Shared/infrastructure/EventBus/RabbitMQ/RabbitMQQueueFormatter"
+import { RabbitMQQueueFormatter } from "../../../../../src/Context/Shared/infrastructure/EventBus/RabbitMQ/RabbitMQQueueFormatter"
 import { DomainEventSubscriberDummy } from "./__mocks__/DomainEventSubscriberDummy"
-import { RabbitMQEventBus } from "../../../../src/Context/Shared/infrastructure/EventBus/RabbitMQ/RabbitMQEventBus"
-import { DomainEventSubscribers } from "../../../../src/Context/Shared/infrastructure/EventBus/DomainEventSubscribers"
+import { RabbitMQEventBus } from "../../../../../src/Context/Shared/infrastructure/EventBus/RabbitMQ/RabbitMQEventBus"
+import { DomainEventSubscribers } from "../../../../../src/Context/Shared/infrastructure/EventBus/DomainEventSubscribers"
 import { DomainEventDummyMother } from "./__mocks__/DomainEventDummyMother"
 
 describe("RabbitMQEventBus test", () => {

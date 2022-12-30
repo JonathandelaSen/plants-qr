@@ -61,4 +61,21 @@ export class MongoRepository {
     async remove(filter: { [key: string]: any }): Promise<boolean> {
         return (await (await this.client.getClient()).db().collection(this.collectionName).deleteOne(filter)).deletedCount >= 1
     }*/
+
+    public async cleanDatabase(): Promise<void> {
+        const collections = await this.collections()
+        const client = await this.client.getClient()
+
+        for (const collection of collections) {
+            await client.db().collection(collection).deleteMany({})
+        }
+    }
+    public async close(): Promise<void> {
+        return await this.client.close()
+    }
+
+    private async collections(): Promise<string[]> {
+        const collections = await (await this.client.getClient()).db().listCollections(undefined, { nameOnly: true }).toArray()
+        return collections.map(collection => collection.name)
+    }
 }

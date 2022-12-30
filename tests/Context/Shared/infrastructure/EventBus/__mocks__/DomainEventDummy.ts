@@ -1,4 +1,4 @@
-import { DomainEvent } from "../../../../../src/Context/Shared/domain/DomainEvent"
+import { DomainEvent } from "../../../../../../src/Context/Shared/domain/DomainEvent"
 
 export class DomainEventDummy extends DomainEvent {
     static readonly EVENT_NAME = "dummy"

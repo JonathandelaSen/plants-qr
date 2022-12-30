@@ -13,6 +13,7 @@ export class DomainEventDeserializer extends Map<string, DomainEventClass> {
     static configure(subscribers: DomainEventSubscribers) {
         const mapping = new DomainEventDeserializer()
         subscribers.items.forEach(subscriber => {
+            console.log("Subscribers-", subscriber)
             subscriber.subscribedTo().forEach(mapping.registerEvent.bind(mapping))
         })
 
@@ -28,7 +29,9 @@ export class DomainEventDeserializer extends Map<string, DomainEventClass> {
         const eventData = JSON.parse(event).data as DomainEventJSON
         const { type, aggregateId, attributes, id, occurred_on } = eventData
         const eventClass = super.get(type)
-
+        console.log("*******")
+        console.log("eventClass", eventClass)
+        console.log("*******")
         if (!eventClass) {
             throw Error(`DomainEvent mapping not found for event ${type}`)
         }
