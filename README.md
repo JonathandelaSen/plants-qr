@@ -9,6 +9,6 @@
 - [ ] Docker
 - [ ] Monitoring
 - [ ] Test
-  - [ ] Cucumber
+  - [x] Aceptance
   - [ ] ipsum
 
