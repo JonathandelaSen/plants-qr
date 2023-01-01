@@ -4,8 +4,8 @@ services:
     class: ../../controllers/PlantsGetController
     arguments: ['@Shared.domain.QueryBus']
 
-  Apps.controllers.PlantsPostController:
-    class: ../../controllers/PlantsPostController
+  Apps.controllers.PlantsPutController:
+    class: ../../controllers/PlantsPutController
     arguments: ['@Shared.domain.CommandBus']
 
 

@@ -1,4 +1,4 @@
-import { AfterAll, BeforeAll } from "cucumber"
+import { AfterAll, Before, BeforeAll } from "cucumber"
 import { PlantsQRApp } from "../../../../../src/apps/Plants/PlantsQRApp"
 import { EventBus } from "../../../../../src/Context/Shared/domain/EventBus"
 import container from "../../../../../src/apps/Plants/dependency-injection"
@@ -20,6 +20,11 @@ BeforeAll(async () => {
 
     application = new PlantsQRApp()
     await application.start()
+})
+Before(async () => {
+    mongoRepository = container.get<MongoRepository>("Shared.domain.MongoRepository")
+    await Utils.wait(500) //for mongo to connect. Ugly
+    await mongoRepository.cleanDatabase()
 })
 
 AfterAll(async () => {
