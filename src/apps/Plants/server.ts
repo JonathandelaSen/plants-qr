@@ -11,7 +11,6 @@ import * as http from "http"
 //import Logger from '../../../Contexts/Shared/domain/Logger';
 import { registerRoutes } from "./routes"
 import cors from "cors"
-import container from "./dependency-injection"
 import WinstonLogger from "../../Context/Shared/infrastructure/Logger/WinstonLogger"
 
 export class Server {

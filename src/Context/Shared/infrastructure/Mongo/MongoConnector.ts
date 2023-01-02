@@ -43,7 +43,7 @@ export class MongoConnector {
     }*/
 
     async connect() {
-        console.log("Connecting DB mongo")
+        console.log("Connecting DB mongo", MongoConnector.getMongoURL())
         this.client = await MongoClient.connect(MongoConnector.getMongoURL())
             .then(function (db) {
                 /*WinstonLogger.info("DB connected", {
