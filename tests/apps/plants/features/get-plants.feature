@@ -2,7 +2,7 @@ Feature: Obtain all the plants
   As a user
   I want to get all the plants
 
-  Scenario: All existing courses
+  Scenario: All existing plants
     Given there is the plant:
     """
     {
