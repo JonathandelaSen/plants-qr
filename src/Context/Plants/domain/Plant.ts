@@ -22,7 +22,7 @@ export class Plant extends AggregateRoot {
     }
     toPrimitives(): any {
         return {
-            id: this.id,
+            _id: this.id,
             name: this.name
         }
     }

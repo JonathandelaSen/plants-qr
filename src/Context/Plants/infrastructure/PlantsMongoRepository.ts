@@ -2,6 +2,8 @@ import { PlantRepository } from "../domain/persistence/PlantRepository"
 import { MongoRepository } from "../../Shared/infrastructure/Mongo/MongoRepository"
 import { Plant } from "../domain/Plant"
 import { Criteria } from "../../Shared/domain/criteria/Criteria"
+import { Filters } from "../../Shared/domain/criteria/Filters"
+import { Order } from "../../Shared/domain/criteria/Order"
 
 export class PlantsMongoRepository implements PlantRepository {
     private static COLLECTION = "plants"
@@ -19,15 +21,13 @@ export class PlantsMongoRepository implements PlantRepository {
     }
 
     public async search(id: string): Promise<Plant | undefined> {
-        /*const collection = await this.collection()
-        const document = await collection.findOne<CourseDocument>({ _id: id.value })
-
-        return document ? Course.fromPrimitives({ name: document.name, duration: document.duration, id: id.value }) : undefined*/
-        return undefined
+        const document = await this.mongoRepository.findOneBy(PlantsMongoRepository.COLLECTION, { _id: id })
+        return document ? Plant.fromPrimitives({ id: document._id.toString(), name: document.name }) : undefined
     }
 
-    searchAll(): Promise<Array<Plant>> {
-        return Promise.resolve(undefined)
+    async searchAll(): Promise<Plant[]> {
+        const docs = await this.mongoRepository.searchByCriteria(PlantsMongoRepository.COLLECTION, new Criteria(Filters.none(), Order.none()))
+        return docs.map(document => Plant.fromPrimitives({ name: document.name, id: document._id.toString() }))
     }
 
     async matching(criteria: Criteria): Promise<Plant[]> {

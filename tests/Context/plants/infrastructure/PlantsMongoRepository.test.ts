@@ -1,36 +1,36 @@
 import container from "../../../../src/apps/Plants/dependency-injection"
 import { MongoRepository } from "../../../../src/Context/Shared/infrastructure/Mongo/MongoRepository"
 import Utils from "../../../../src/Context/Shared/domain/Utils"
-import { ConfigureRabbitMQCommand } from "../../../../src/apps/Plants/command/ConfigureRabbitMQCommand"
 import { LoadEnvVarsCommand } from "../../../../src/apps/Plants/command/LoadEnvVarsCommand"
+import { PlantMother } from "../domain/PlantMother"
+import { PlantsMongoRepository } from "../../../../src/Context/Plants/infrastructure/PlantsMongoRepository"
 
 describe("PlantsMongoRepository", () => {
     let repository: MongoRepository
+    let plantRepository: PlantsMongoRepository
 
     beforeAll(async function () {
         await LoadEnvVarsCommand.run()
-        await ConfigureRabbitMQCommand.run()
         repository = container.get<MongoRepository>("Shared.domain.MongoRepository")
         await Utils.wait(500) //for mongo to connect. Ugly
         await repository.cleanDatabase()
-        console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!PlantsMongoRepository beforeAll")
+        plantRepository = container.get<PlantsMongoRepository>("Plants.PlantRepository")
     })
 
     describe("save", () => {
-        it("should save a course", async () => {
-            console.log("--save")
-        })
-        it("should save2 a course", async () => {
-            console.log("--save 2")
+        it("should save a plant", async () => {
+            await plantRepository.save(PlantMother.random())
+            const plants = await plantRepository.searchAll()
+            expect(plants.length).toBe(1)
         })
     })
 
     describe("get", () => {
         it("should get a course", async () => {
-            console.log("--get")
-        })
-        it("should get2 a course", async () => {
-            console.log("--get 2")
+            const plant = PlantMother.random()
+            await plantRepository.save(plant)
+            const plantFromRepository = await plantRepository.search(plant.id)
+            expect(plant).toEqual(plantFromRepository)
         })
     })
 })

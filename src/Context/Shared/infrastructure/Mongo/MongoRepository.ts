@@ -38,10 +38,14 @@ export class MongoRepository {
             .limit(query.limit)
             .toArray()
     }
-    /*
-    async findOneBy(query: { [key: string]: any }, extraProjections?: { [key: string]: any }): Promise<WithId<Document> | null> {
-        return (await this.client.getClient()).db().collection(this.collectionName).findOne(query)
+    async findOneBy(
+        collectionName: string,
+        query: { [key: string]: any },
+        extraProjections?: { [key: string]: any }
+    ): Promise<WithId<Document> | null> {
+        return (await this.client.getClient()).db().collection(collectionName).findOne(query)
     }
+    /*
 
     async find(limit: number, skip: number, extraProjections?: { [key: string]: any }): Promise<WithId<Document>[]> {
         let results = (await this.client.getClient()).db().collection(this.collectionName).find()
