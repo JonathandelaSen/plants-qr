@@ -5,6 +5,6 @@ import { Plant } from "../../../../../src/Context/Plants/domain/Plant"
 
 Given("there is the plant:", async (plant: any) => {
     const plantRepository: PlantRepository = container.get("Plants.PlantRepository")
-    const { id, name } = JSON.parse(plant)
-    await plantRepository.save(new Plant(id, name))
+    const { _id, name } = JSON.parse(plant)
+    await plantRepository.save(new Plant(_id, name))
 })

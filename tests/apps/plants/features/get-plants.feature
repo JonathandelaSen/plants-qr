@@ -6,7 +6,7 @@ Feature: Obtain all the plants
     Given there is the plant:
     """
     {
-        "id": "8c900b20-e04a-4777-9183-32faab6d2fb5",
+        "_id": "8c900b20-e04a-4777-9183-32faab6d2fb5",
         "name": "Plant1"
     }
     """
@@ -15,7 +15,7 @@ Feature: Obtain all the plants
     And the response content should be:
     """
     [{
-      "id": "8c900b20-e04a-4777-9183-32faab6d2fb5",
+      "_id": "8c900b20-e04a-4777-9183-32faab6d2fb5",
       "name": "Plant1"
     }]
     """

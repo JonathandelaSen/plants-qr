@@ -4,11 +4,11 @@
 - [x] CQRS
 - [x] RabbitMQ
 - [x] Logger
-- [ ] MongoDB
+- [x] MongoDB
 - [ ] Event driven microservices
 - [ ] Docker
 - [ ] Monitoring
-- [ ] Test
-  - [x] Aceptance
-  - [ ] ipsum
+- [x] Test
+  - [x] Acceptance with Cucumber
+  - [x] Unit with Jest
 
