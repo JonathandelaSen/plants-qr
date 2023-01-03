@@ -5,14 +5,17 @@ import { Criteria } from "../../../../src/Context/Shared/domain/criteria/Criteri
 export class PlantMockRepository implements PlantRepository {
     private saveMock: jest.Mock
     private searchAllMock: jest.Mock
-    private plants: Array<Plant> = []
+    private matchingMock: jest.Mock
+    private plants: Plant[] = []
 
     constructor() {
         this.saveMock = jest.fn()
         this.searchAllMock = jest.fn()
+        this.matchingMock = jest.fn()
     }
     matching(criteria: Criteria): Promise<Plant[]> {
-        return Promise.resolve([])
+        this.matchingMock(criteria)
+        return Promise.resolve(this.plants)
     }
 
     async save(plant: Plant): Promise<void> {
@@ -26,5 +29,12 @@ export class PlantMockRepository implements PlantRepository {
 
     assertSaveHaveBeenCalledWith(expected: Plant): void {
         expect(this.saveMock).toHaveBeenCalledWith(expected)
+    }
+
+    assertMatchingHaveBeenCalledWith(expected: Criteria): void {
+        expect(this.matchingMock).toHaveBeenCalledWith(expected)
+    }
+    returnPlants(plants: Plant[]) {
+        this.plants = plants
     }
 }
