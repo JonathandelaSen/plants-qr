@@ -11,7 +11,7 @@ describe("PlantsMongoRepository", () => {
 
     beforeAll(async function () {
         await LoadEnvVarsCommand.run()
-        await Utils.wait(200) //for injecting dependencies
+        await Utils.wait(1000) //for injecting dependencies
         repository = container.get<MongoRepository>("Shared.domain.MongoRepository")
         await Utils.wait(500) //for mongo to connect. Ugly
         await repository.cleanDatabase()

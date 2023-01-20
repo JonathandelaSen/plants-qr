@@ -1,6 +1,5 @@
 import { MongoClient, ObjectId, WithId, Document } from "mongodb"
 import { MongoConnector } from "./MongoConnector"
-import { v4 as uuid } from "uuid"
 import { from as fromUuidV4Mongo } from "uuid-mongodb"
 import { Criteria } from "../../domain/criteria/Criteria"
 import { MongoCriteriaConverter } from "./MongoCriteriaConverter"
@@ -20,10 +19,14 @@ export class MongoRepository {
     }
 
     async save(collectionName: string, item: { [key: string]: any }) {
-        if (item.id) {
-            item._id = fromUuidV4Mongo(item.id)
-            delete item.id
+        console.log("----save")
+        console.log(item)
+        if (item._id) {
+            item._id = fromUuidV4Mongo(item._id)
         }
+        console.log("3 item._id", item._id)
+        console.log("item.asd", item.asd)
+        console.log(typeof item._id)
         return (await (await this.client.getClient()).db().collection(collectionName).insertOne(item)).insertedId
     }
 
