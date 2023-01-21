@@ -8,15 +8,15 @@ export class RabbitMQConnection {
     private connection?: amqplib.Connection
 
     constructor(params: { connectionSettings: ConnectionSettings }) {
-        console.log("RabbitMQConnection constructor", params)
+        console.log("RabbitMQConnection constructor")
         this.connectionSettings = params.connectionSettings
     }
 
     async connect() {
-        console.log("Connecting...")
+        console.log("RabbitMQConnection Connecting...")
         this.connection = await this.amqpConnect()
         this.channel = await this.amqpChannel()
-        console.log("Connected...")
+        console.log("RabbitMQConnection Connected...")
     }
 
     async exchange(params: { name: string }) {

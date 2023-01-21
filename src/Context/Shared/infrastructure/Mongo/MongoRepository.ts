@@ -19,15 +19,17 @@ export class MongoRepository {
     }
 
     async save(collectionName: string, item: { [key: string]: any }) {
-        console.log("----save")
-        console.log(item)
         if (item._id) {
             item._id = fromUuidV4Mongo(item._id)
         }
-        console.log("3 item._id", item._id)
-        console.log("item.asd", item.asd)
-        console.log(typeof item._id)
-        return (await (await this.client.getClient()).db().collection(collectionName).insertOne(item)).insertedId
+        return (
+            await (
+                await this.client.getClient()
+            )
+                .db()
+                .collection(collectionName)
+                .updateOne({ _id: fromUuidV4Mongo(item._id) }, { $set: item }, { upsert: true })
+        ).upsertedId
     }
 
     async searchByCriteria(collectionName: string, criteria: Criteria): Promise<WithId<Document>[]> {

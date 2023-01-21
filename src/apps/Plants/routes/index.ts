@@ -8,5 +8,6 @@ export function registerRoutes(router: Router) {
 
 function register(routePath: string, app: Router) {
     const route = require(routePath)
+    //await route.register(app)
     route.register(app)
 }

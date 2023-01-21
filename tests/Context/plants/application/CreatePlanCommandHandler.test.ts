@@ -2,7 +2,7 @@ import { CreatePlantCommand } from "../../../../src/Context/Plants/domain/Create
 import { PlantMother } from "../domain/PlantMother"
 import { CreatePlantCommandHandler } from "../../../../src/Context/Plants/application/CreatePlantCommandHandler"
 import { PlantCreator } from "../../../../src/Context/Plants/application/PlantCreator"
-import { LoadEnvVarsCommand } from "../../../../src/apps/Plants/command/LoadEnvVarsCommand"
+import "../../../../src/Context/Shared/LoadEnvVars"
 import { ConfigureRabbitMQCommand } from "../../../../src/apps/Plants/command/ConfigureRabbitMQCommand"
 import EventBusMock from "../shared/domain/EventBusMock"
 import { PlantMockRepository } from "../__mocks__/PlantMockRepository"
@@ -13,7 +13,6 @@ describe("CreatePlantCommandHandler", () => {
     let eventBus: EventBusMock
 
     beforeAll(async function () {
-        await LoadEnvVarsCommand.run()
         await ConfigureRabbitMQCommand.run()
         repository = new PlantMockRepository()
         eventBus = new EventBusMock()

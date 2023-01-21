@@ -6,41 +6,17 @@ import ApplicationConfig from "../../../../apps/Plants/config/ApplicationConfig"
 
 export class MongoConnector {
     private client: MongoClient
-    //private static client: MongoClient
+    private connected = false
 
-    /*public static async getClient(): Promise<MongoClient> {
-        if (MongoConnector.client) return MongoConnector.client
-        await MongoConnector.connect()
-        return MongoConnector.client
-    }*/
+    constructor() {}
 
-    constructor() {
-        this.connect()
-    }
     public async getClient(): Promise<MongoClient> {
+        if (this.connected) {
+            return this.client
+        }
+        await this.connect()
         return this.client
     }
-
-    /*static async connect() {
-        MongoConnector.client = await MongoClient.connect(MongoConnector.getMongoURL())
-            .then(function (db) {
-                /!*WinstonLogger.info("DB connected", {
-                    tag: LoggerTagConstants.DB
-                })*!/
-                console.log("DB connected")
-                return db
-            })
-            .catch(function (err) {
-                /!*WinstonLogger.error("Error connecting DB", {
-                    tag: LoggerTagConstants.DB
-                })
-                WinstonLogger.error(err, {
-                    tag: LoggerTagConstants.DB
-                })*!/
-                console.log("Error connecting DB", err)
-                return err
-            })
-    }*/
 
     async connect() {
         console.log("Connecting DB mongo", MongoConnector.getMongoURL())
@@ -62,6 +38,7 @@ export class MongoConnector {
                 console.log("Error connecting DB", err)
                 return err
             })
+        this.connected = true
     }
 
     async close(): Promise<void> {

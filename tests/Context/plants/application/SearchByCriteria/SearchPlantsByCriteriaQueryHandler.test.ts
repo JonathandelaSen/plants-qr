@@ -2,7 +2,7 @@ import { SearchPlantsByCriteriaQuery } from "../../../../../src/Context/Plants/a
 import { SearchPlantsByCriteriaQueryHandler } from "../../../../../src/Context/Plants/application/SearchByCriteria/SearchPlantsByCriteriaQueryHandler"
 import { PlantsByCriteriaSearcher } from "../../../../../src/Context/Plants/application/SearchByCriteria/PlantsByCriteriaSearcher"
 import { PlantMockRepository } from "../../__mocks__/PlantMockRepository"
-import { LoadEnvVarsCommand } from "../../../../../src/apps/Plants/command/LoadEnvVarsCommand"
+import "../../../../../src/Context/Shared/LoadEnvVars"
 import { Criteria } from "../../../../../src/Context/Shared/domain/criteria/Criteria"
 import { Filters } from "../../../../../src/Context/Shared/domain/criteria/Filters"
 import { Order } from "../../../../../src/Context/Shared/domain/criteria/Order"
@@ -13,7 +13,6 @@ describe("SearchPlantsByCriteriaQueryHandler", () => {
     let repository: PlantMockRepository
 
     beforeAll(async function () {
-        await LoadEnvVarsCommand.run()
         repository = new PlantMockRepository()
     })
 

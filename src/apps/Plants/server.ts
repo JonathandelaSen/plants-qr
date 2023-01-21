@@ -1,5 +1,4 @@
-import dotenv from "dotenv"
-dotenv.config()
+import "../../Context/Shared/LoadEnvVars"
 import bodyParser from "body-parser"
 import compress from "compression"
 import errorHandler from "errorhandler"
