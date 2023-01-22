@@ -27,6 +27,10 @@ export class PlantMockRepository implements PlantRepository {
         return this.plants
     }
 
+    search(id: string): Promise<Plant> {
+        throw new Error("TO BE IMPLEMENTED")
+    }
+
     assertSaveHaveBeenCalledWith(expected: Plant): void {
         expect(this.saveMock).toHaveBeenCalledWith(expected)
     }

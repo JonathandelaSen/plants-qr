@@ -1,9 +1,5 @@
 import { Plant } from "./Plant"
-
-interface PlantResponse {
-    id: string
-    name: string
-}
+import { PlantResponse } from "./PlantResponse"
 
 export class PlantsResponse {
     public readonly plants: Array<PlantResponse>

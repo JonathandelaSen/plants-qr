@@ -11,10 +11,21 @@ services:
     class: ../../../../Context/Plants/application/SearchByCriteria/PlantsByCriteriaSearcher
     arguments: ['@Plants.PlantRepository']
 
+  Plants.PlantByIdSearcher:
+    class: ../../../../Context/Plants/application/SearchById/PlantByIdSearcher
+    arguments: ['@Plants.PlantRepository']
+
 
   Plants.SearchPlantsByCriteriaQueryHandler:
     class: ../../../../Context/Plants/application/SearchByCriteria/SearchPlantsByCriteriaQueryHandler
     arguments: [ '@Plants.PlantsByCriteriaSearcher' ]
+    tags:
+      - { name: 'queryHandler' }
+
+
+  Plants.SearchPlantByIdQueryHandler:
+    class: ../../../../Context/Plants/application/SearchById/SearchPlantByIdQueryHandler
+    arguments: [ '@Plants.PlantByIdSearcher' ]
     tags:
       - { name: 'queryHandler' }
 
