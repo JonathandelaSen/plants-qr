@@ -12,3 +12,5 @@
   - [x] Acceptance with Cucumber
   - [x] Unit with Jest
 
+# TODO
+- [ ] Control response for domain errors
