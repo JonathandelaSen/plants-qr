@@ -31,4 +31,16 @@ describe("PlantsMongoRepository", () => {
             expect(plant).toEqual(plantFromRepository)
         })
     })
+
+    describe("remove", () => {
+        it("should get a plant", async () => {
+            const plant = PlantMother.random()
+            await plantRepository.save(plant)
+            const response = await plantRepository.remove(plant.id)
+            const plantFromRepository = await plantRepository.search(plant.id)
+
+            expect(response).toEqual(true)
+            expect(plantFromRepository).toEqual(undefined)
+        })
+    })
 })

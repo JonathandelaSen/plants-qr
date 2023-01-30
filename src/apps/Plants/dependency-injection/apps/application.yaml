@@ -12,6 +12,10 @@ services:
     class: ../../controllers/PlantsPutController
     arguments: ['@Shared.domain.CommandBus']
 
+  Apps.controllers.PlantDeleteController:
+    class: ../../controllers/PlantDeleteController
+    arguments: ['@Shared.domain.CommandBus']
+
 
   Apps.controllers.StatusGetController:
     class: ../../controllers/StatusGetController

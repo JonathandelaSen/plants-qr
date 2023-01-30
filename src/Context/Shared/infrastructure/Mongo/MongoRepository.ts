@@ -18,18 +18,30 @@ export class MongoRepository {
             .findOne({ _id: fromUuidV4Mongo(id) })
     }
 
-    async save(collectionName: string, item: { [key: string]: any }) {
+    async save(collectionName: string, item: { [key: string]: any }): Promise<boolean> {
         if (item._id) {
             item._id = fromUuidV4Mongo(item._id)
         }
+        const result = await (
+            await this.client.getClient()
+        )
+            .db()
+            .collection(collectionName)
+            .updateOne({ _id: fromUuidV4Mongo(item._id) }, { $set: item }, { upsert: true })
+        return result.modifiedCount >= 1 || result.upsertedCount >= 1
+    }
+
+    async deleteOne(collectionName: string, id: string): Promise<boolean> {
         return (
-            await (
-                await this.client.getClient()
-            )
-                .db()
-                .collection(collectionName)
-                .updateOne({ _id: fromUuidV4Mongo(item._id) }, { $set: item }, { upsert: true })
-        ).upsertedId
+            (
+                await (
+                    await this.client.getClient()
+                )
+                    .db()
+                    .collection(collectionName)
+                    .deleteOne({ _id: fromUuidV4Mongo(id) })
+            ).deletedCount > 0
+        )
     }
 
     async searchByCriteria(collectionName: string, criteria: Criteria): Promise<WithId<Document>[]> {

@@ -17,8 +17,8 @@ export class PlantsMongoRepository implements PlantRepository {
         return this.toDomainModel(response)
     }*/
 
-    async save(plant: Plant): Promise<void> {
-        await this.mongoRepository.save(PlantsMongoRepository.COLLECTION, plant.toPrimitives())
+    async save(plant: Plant): Promise<boolean> {
+        return await this.mongoRepository.save(PlantsMongoRepository.COLLECTION, plant.toPrimitives())
     }
 
     public async search(id: string): Promise<Plant | undefined> {
@@ -34,5 +34,9 @@ export class PlantsMongoRepository implements PlantRepository {
     async matching(criteria: Criteria): Promise<Plant[]> {
         const documents = await this.mongoRepository.searchByCriteria(PlantsMongoRepository.COLLECTION, criteria)
         return documents.map(document => Plant.fromPrimitives({ name: document.name, id: document._id.toString() }))
+    }
+
+    async remove(id: string): Promise<boolean> {
+        return await this.mongoRepository.deleteOne(PlantsMongoRepository.COLLECTION, id)
     }
 }

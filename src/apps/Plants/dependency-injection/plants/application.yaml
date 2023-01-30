@@ -7,6 +7,10 @@ services:
     class: ../../../../Context/Plants/application/PlantCreator
     arguments: ['@Shared.domain.EventBus', '@Plants.PlantRepository']
 
+  Plants.PlantDeleter:
+    class: ../../../../Context/Plants/application/PlantDeleter
+    arguments: ['@Plants.PlantRepository']
+
   Plants.PlantsByCriteriaSearcher:
     class: ../../../../Context/Plants/application/SearchByCriteria/PlantsByCriteriaSearcher
     arguments: ['@Plants.PlantRepository']
@@ -32,6 +36,12 @@ services:
   Plants.CreatePlantCommandHandler:
     class: ../../../../Context/Plants/application/CreatePlantCommandHandler
     arguments: ['@Plants.PlantCreator']
+    tags:
+      - { name: 'commandHandler' }
+
+  Plants.DeletePlantCommandHandler:
+    class: ../../../../Context/Plants/application/DeletePlantCommandHandler
+    arguments: ['@Plants.PlantDeleter']
     tags:
       - { name: 'commandHandler' }
 
