@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: app
+    restart: always
+    build: .
+    ports:
+      - "3002:3002"
+    links:
+      - mongo
+#      - rabbitmq
+    environment:
+      MONGO_HOST: "mongo"
+      RABBITMQ_HOST: "rabbitmq"
+  mongo:
+    image: mongo:5.0.0
+    volumes:
+      - ./data/mongo:/data/db:delegated
+    ports:
+      - 27018:27017
+    expose:
+      - 27018
+#  rabbitmq:
+#    image: 'rabbitmq:3.8-management'
+#    ports:
+#      - 5672:5672
+#      - 15672:15672
+
+volumes:
+  node_modules:
+  esdata:
+    driver: local

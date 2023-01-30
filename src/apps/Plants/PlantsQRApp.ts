@@ -2,8 +2,8 @@ import Injector from "./dependency-injection"
 import { Server } from "./server"
 import { EventBus } from "../../Context/Shared/domain/EventBus"
 import { DomainEventSubscribers } from "../../Context/Shared/infrastructure/EventBus/DomainEventSubscribers"
-import { RabbitMQConnection } from "../../Context/Shared/infrastructure/EventBus/RabbitMQ/RabbitMQConnection"
 import { ContainerBuilder } from "node-dependency-injection"
+import { RabbitMQConnection } from "../../Context/Shared/infrastructure/EventBus/RabbitMQ/RabbitMQConnection"
 
 export class PlantsQRApp {
     server?: Server
@@ -12,9 +12,9 @@ export class PlantsQRApp {
     async start() {
         //await this.delay(3000) //we have to wait till the DI has load every dependency (very ugly to fiix in the future)
         this.container = await Injector.run()
-        const port = process.env.PORT || "3000"
+        const port = process.env.PORT || "3002"
         this.server = new Server(port)
-        await this.configureRabbitMQEventBus()
+        await this.configureEventBus()
         return this.server.listen()
     }
 
