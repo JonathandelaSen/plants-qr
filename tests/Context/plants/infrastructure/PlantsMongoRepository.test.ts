@@ -14,6 +14,9 @@ describe("PlantsMongoRepository", () => {
         await repository.cleanDatabase()
         plantRepository = container.get<PlantsMongoRepository>("Plants.PlantRepository")
     })
+    beforeEach(async function () {
+        await repository.cleanDatabase()
+    })
 
     describe("save", () => {
         it("should save a plant", async () => {
@@ -21,8 +24,19 @@ describe("PlantsMongoRepository", () => {
             const plants = await plantRepository.searchAll()
             expect(plants.length).toBe(1)
         })
+        it("should update an existing plant", async () => {
+            const plant = PlantMother.random()
+            await plantRepository.save(plant)
+            plant.name = "New plant"
+            await plantRepository.save(plant)
+            const plants = await plantRepository.searchAll()
+            expect(plants.length).toBe(1)
+            expect(plants[0].name).toBe(plant.name)
+        })
     })
-
+    function delay(time): Promise<void> {
+        return new Promise(resolve => setTimeout(resolve, time))
+    }
     describe("get", () => {
         it("should get a plant", async () => {
             const plant = PlantMother.random()

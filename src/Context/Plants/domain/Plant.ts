@@ -3,7 +3,7 @@ import { PlantCreatedDomainEvent } from "./PlantCreatedDomainEvent"
 
 export class Plant extends AggregateRoot {
     readonly id: string
-    readonly name: string
+    name: string
 
     constructor(id: string, name: string) {
         super()
