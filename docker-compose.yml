@@ -18,7 +18,7 @@ services:
     volumes:
       - ./data/mongo:/data/db:delegated
     ports:
-      - 27018:27017
+      - "27018:27017"
     expose:
       - 27018
 #  rabbitmq:
