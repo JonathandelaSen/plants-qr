@@ -1,5 +1,6 @@
 import { ConnectionSettings } from "../../../Shared/infrastructure/EventBus/RabbitMQ/ConnectionSettings"
 import { ExchangeSetting } from "../../../Shared/infrastructure/EventBus/RabbitMQ/ExchangeSetting"
+import ApplicationConfig from "../../../../apps/Plants/config/ApplicationConfig"
 
 export type RabbitMQConfig = {
     connectionSettings: ConnectionSettings
@@ -17,7 +18,7 @@ export class RabbitMQConfigFactory {
                 vhost: "/",
                 connection: {
                     secure: false,
-                    hostname: "localhost",
+                    hostname: ApplicationConfig.rabbitmq.hostname,
                     port: 5672
                 }
             },

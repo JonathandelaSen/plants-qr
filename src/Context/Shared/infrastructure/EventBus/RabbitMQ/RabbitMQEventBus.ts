@@ -1,7 +1,7 @@
 import { DomainEventDeserializer } from "../DomainEventDeserializer"
 import { DomainEventJsonSerializer } from "../DomainEventJsonSerializer"
 import { DomainEventSubscribers } from "../DomainEventSubscribers"
-import { RabbitMQConnection } from "./RabbitMqConnection"
+import { RabbitMQConnection } from "./RabbitMQConnection"
 import { RabbitMQConsumerFactory } from "./RabbitMQConsumerFactory"
 import { RabbitMQQueueFormatter } from "./RabbitMQQueueFormatter"
 import { EventBus } from "../../../domain/EventBus"

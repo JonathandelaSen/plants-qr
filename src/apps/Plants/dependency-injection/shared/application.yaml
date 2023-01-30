@@ -4,33 +4,33 @@ services:
     class: ../../../../Context/Shared/infrastructure/EventBus/InMemory/InMemoryAsyncEventBus
     arguments: []
 
-#  Shared.domain.EventBus:
-#    class: ../../../../Context/Shared/infrastructure/EventBus/InMemory/InMemoryAsyncEventBus
-#    arguments: []
-
   Shared.domain.EventBus:
-    factory:
-      class: ../../../../Context/Plants/infrastructure/RabbitMQ/RabbitMQEventBusFactory
-      method: 'create'
-    arguments:
-      [
-        '@Shared.RabbitMQConnection',
-        '@Shared.RabbitMQQueueFormatter',
-        '@Shared.RabbitMQConfig'
-      ]
+    class: ../../../../Context/Shared/infrastructure/EventBus/InMemory/InMemoryAsyncEventBus
+    arguments: []
 
-  Shared.RabbitMQConfig:
-    factory:
-      class: ../../../../Context/Plants/infrastructure/RabbitMQ/RabbitMQConfigFactory
-      method: 'createConfig'
-
-  Shared.RabbitMQConnection:
-    class: ../../../../Context/Shared/infrastructure/EventBus/RabbitMQ/RabbitMQConnection
-    arguments: ['@Shared.RabbitMQConfig']
-
-  Shared.RabbitMQQueueFormatter:
-    class: ../../../../Context/Shared/infrastructure/EventBus/RabbitMQ/RabbitMQQueueFormatter
-    arguments: ['PlantsQR']
+#  Shared.domain.EventBus:
+#    factory:
+#      class: ../../../../Context/Plants/infrastructure/RabbitMQ/RabbitMQEventBusFactory
+#      method: 'create'
+#    arguments:
+#      [
+#        '@Shared.RabbitMQConnection',
+#        '@Shared.RabbitMQQueueFormatter',
+#        '@Shared.RabbitMQConfig'
+#      ]
+#
+#  Shared.RabbitMQConfig:
+#    factory:
+#      class: ../../../../Context/Plants/infrastructure/RabbitMQ/RabbitMQConfigFactory
+#      method: 'createConfig'
+#
+#  Shared.RabbitMQConnection:
+#    class: ../../../../Context/Shared/infrastructure/EventBus/RabbitMQ/RabbitMQConnection
+#    arguments: ['@Shared.RabbitMQConfig']
+#
+#  Shared.RabbitMQQueueFormatter:
+#    class: ../../../../Context/Shared/infrastructure/EventBus/RabbitMQ/RabbitMQQueueFormatter
+#    arguments: ['PlantsQR']
 
 
 

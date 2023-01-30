@@ -8,5 +8,8 @@ export default {
         pass: process.env.MONGO_PASS,
         db: Utils.isTestEnvironment() ? process.env.MONGO_DATABASE_TEST : process.env.MONGO_DATABASE,
         port: process.env.MONGO_PORT
+    },
+    rabbitmq: {
+        hostname: process.env.RABBITMQ_HOST
     }
 }
