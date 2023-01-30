@@ -34,9 +34,7 @@ describe("PlantsMongoRepository", () => {
             expect(plants[0].name).toBe(plant.name)
         })
     })
-    function delay(time): Promise<void> {
-        return new Promise(resolve => setTimeout(resolve, time))
-    }
+
     describe("get", () => {
         it("should get a plant", async () => {
             const plant = PlantMother.random()
