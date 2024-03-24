@@ -7,16 +7,16 @@ import { ConfigureRabbitMQCommand } from "../../../../src/apps/Plants/command/Co
 import EventBusMock from "../shared/domain/EventBusMock"
 import { PlantMockRepository } from "../__mocks__/PlantMockRepository"
 import { PlantCreatedDomainEventMother } from "../domain/PlantCreatedDomainEventMother"
-import PlantDeleter from "../../../../src/Context/Plants/application/PlantDeleter";
-import {DeletePlantCommand} from "../../../../src/Context/Plants/domain/DeletePlantCommand";
-import DeletePlantCommandHandler from "../../../../src/Context/Plants/application/DeletePlantCommandHandler";
+import PlantDeleter from "../../../../src/Context/Plants/application/PlantDeleter"
+import { DeletePlantCommand } from "../../../../src/Context/Plants/domain/DeletePlantCommand"
+import DeletePlantCommandHandler from "../../../../src/Context/Plants/application/DeletePlantCommandHandler"
 
 describe("DeletePlantCommandHandler", () => {
     let repository: PlantMockRepository
     let eventBus: EventBusMock
 
     beforeAll(async function () {
-        await ConfigureRabbitMQCommand.run()
+        //await ConfigureRabbitMQCommand.run()
         repository = new PlantMockRepository()
         eventBus = new EventBusMock()
     })

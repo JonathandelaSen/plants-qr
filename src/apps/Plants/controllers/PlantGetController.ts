@@ -10,7 +10,7 @@ export class PlantGetController implements Controller {
     constructor(private readonly queryBus: QueryBus) {}
 
     async run(req: Request, res: Response): Promise<void> {
-        console.log("PlantGetController run")
+        console.log("PlantGetController run new log")
         const plantId = req.params.id
         const query = new SearchPlantByIdQuery(plantId)
 

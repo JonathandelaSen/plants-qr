@@ -3,7 +3,6 @@ version: '3.8'
 services:
   app:
     container_name: app
-    restart: always
     build: .
     ports:
       - "3002:3002"
@@ -12,7 +11,7 @@ services:
 #      - rabbitmq
     environment:
       MONGO_HOST: "mongo"
-      RABBITMQ_HOST: "rabbitmq"
+#      RABBITMQ_HOST: "rabbitmq"
   mongo:
     image: mongo:5.0.0
     volumes:

@@ -12,7 +12,7 @@ let eventBus: EventBus
 
 BeforeAll(async () => {
     const container = await Injector.run()
-    await ConfigureRabbitMQCommand.run()
+    //await ConfigureRabbitMQCommand.run()
 
     mongoRepository = container.get<MongoRepository>("Shared.domain.MongoRepository")
     eventBus = container.get<EventBus>("Shared.domain.EventBus")

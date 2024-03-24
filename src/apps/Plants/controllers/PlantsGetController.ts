@@ -11,7 +11,7 @@ export class PlantsGetController implements Controller {
     constructor(private readonly queryBus: QueryBus) {}
 
     async run(_req: Request, res: Response) {
-        console.log("PlantsGetController run")
+        console.log("PlantsGetController run new log")
         const { query: queryParams } = _req
         const { filters, orderBy, order, limit, offset } = queryParams
 

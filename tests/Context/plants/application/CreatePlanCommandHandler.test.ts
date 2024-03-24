@@ -13,7 +13,7 @@ describe("CreatePlantCommandHandler", () => {
     let eventBus: EventBusMock
 
     beforeAll(async function () {
-        await ConfigureRabbitMQCommand.run()
+        //await ConfigureRabbitMQCommand.run()
         repository = new PlantMockRepository()
         eventBus = new EventBusMock()
     })
